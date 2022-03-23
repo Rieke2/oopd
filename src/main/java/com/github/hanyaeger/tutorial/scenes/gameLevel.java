@@ -5,7 +5,6 @@ import com.github.hanyaeger.api.EntitySpawnerContainer;
 import com.github.hanyaeger.api.scenes.DynamicScene;
 import com.github.hanyaeger.tutorial.entities.foliage.foliageSpawner;
 import com.github.hanyaeger.tutorial.entities.foliage.grass;
-import com.github.hanyaeger.tutorial.entities.player.rabbit.FOV;
 import com.github.hanyaeger.tutorial.entities.player.rabbit.rabbit;
 
 import javafx.scene.paint.Color;
@@ -26,9 +25,7 @@ public class gameLevel extends DynamicScene implements EntitySpawnerContainer{
     public void setupEntities() {
         // TODO Auto-generated method stub
         
-        FOV fov = new FOV(new Coordinate2D((getWidth()/SQUARES)*swordfishX,(getHeight()/SQUARES)*swordfishY));
-        addEntity(fov);
-        rabbit player = new rabbit(new Coordinate2D((getWidth()/SQUARES)*swordfishX,(getHeight()/SQUARES)*swordfishY),fov);
+        rabbit player = new rabbit(new Coordinate2D((getWidth()/SQUARES)*swordfishX,(getHeight()/SQUARES)*swordfishY));
         addEntity(player);
         grass grass = new grass(new Coordinate2D(100,100));
         addEntity(grass);

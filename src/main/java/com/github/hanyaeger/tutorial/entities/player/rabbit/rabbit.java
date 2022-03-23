@@ -20,26 +20,28 @@ import javafx.scene.input.KeyCode;
 public class rabbit extends DynamicSpriteEntity implements KeyListener,SceneBorderTouchingWatcher,Collider,Collided,UpdateExposer{
     final int WALKSPEED = 2;
     final int RUNSPEED = 5;
-    FOV fov;    
     int speed = WALKSPEED;
-    public rabbit(Coordinate2D location,FOV fov){
+    public rabbit(Coordinate2D location){
         super("sprites/hanny.png", location, new Size(20,40), 1, 2);
         setAnchorPoint(AnchorPoint.CENTER_CENTER);
-        this.fov = fov;
     }
 
     @Override
 public void onPressedKeysChange(Set<KeyCode> pressedKeys){
     double a = 0;
     double b = 0;
-    if((pressedKeys.contains(KeyCode.LEFT)||pressedKeys.contains(KeyCode.A))&&!(pressedKeys.contains(KeyCode.RIGHT)||pressedKeys.contains(KeyCode.D))){
+    boolean up = pressedKeys.contains(KeyCode.UP)||pressedKeys.contains(KeyCode.W);
+    boolean down = pressedKeys.contains(KeyCode.DOWN)||pressedKeys.contains(KeyCode.S);
+    boolean left = pressedKeys.contains(KeyCode.LEFT)||pressedKeys.contains(KeyCode.A);
+    boolean right = pressedKeys.contains(KeyCode.RIGHT)||pressedKeys.contains(KeyCode.D);
+    if(left&&!right){
         a=270d;
-    } else if(!(pressedKeys.contains(KeyCode.LEFT)||pressedKeys.contains(KeyCode.A))&&(pressedKeys.contains(KeyCode.RIGHT)||pressedKeys.contains(KeyCode.D))){
+    } else if(right&&!left){
         a=90d;
     }
-    if((pressedKeys.contains(KeyCode.UP)||pressedKeys.contains(KeyCode.W))&&!(pressedKeys.contains(KeyCode.DOWN)||pressedKeys.contains(KeyCode.S))){
+    if(up&&!down){
         b=180d;
-    } else if((pressedKeys.contains(KeyCode.DOWN)||pressedKeys.contains(KeyCode.S))&&!(pressedKeys.contains(KeyCode.UP)||pressedKeys.contains(KeyCode.W))){
+    } else if(down&&!up){
         b=360d;
     }
 
@@ -62,16 +64,16 @@ public void notifyBoundaryTouching(SceneBorder border){
 
     switch(border){
         case TOP:
-            setAnchorLocationY(1);
+            setAnchorLocationY(10);
             break;
         case BOTTOM:
-            setAnchorLocationY(getSceneHeight() - getHeight() - 1);
+            setAnchorLocationY(getSceneHeight() - getHeight() + 9);
             break;
         case LEFT:
-            setAnchorLocationX(1);
+            setAnchorLocationX(10);
             break;
         case RIGHT:
-            setAnchorLocationX(getSceneWidth() - getWidth() - 1);
+            setAnchorLocationX(getSceneWidth() - getWidth() + 9);
         default:
             break;
         }
@@ -88,7 +90,6 @@ public void onCollision(Collider object){
 @Override
 public void explicitUpdate(long timestamp) {
     // TODO Auto-generated method stub
-    fov.updateLocation(getLocationInScene());
 }
 
     
