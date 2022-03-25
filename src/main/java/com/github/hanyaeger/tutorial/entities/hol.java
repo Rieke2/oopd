@@ -8,11 +8,11 @@ import com.github.hanyaeger.api.entities.impl.DynamicCircleEntity;
 
 import javafx.scene.paint.Color;
 
-public class hol extends DynamicCircleEntity implements Collider,Collided {
+public class Hol extends DynamicCircleEntity implements Collider,Collided{
     Coordinate2D location;
     int radius = 15;
 
-    public hol(Coordinate2D initialLocation) {
+    public Hol(Coordinate2D initialLocation) {
         super(initialLocation);
         this.location = initialLocation;
         setAnchorPoint(AnchorPoint.CENTER_CENTER);
@@ -28,9 +28,4 @@ public class hol extends DynamicCircleEntity implements Collider,Collided {
         // TODO Auto-generated method stub
         
     }
-
-    public Coordinate2D getLocation(){
-        return location;
-    }
-    
 }

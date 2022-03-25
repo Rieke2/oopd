@@ -1,6 +1,5 @@
 package com.github.hanyaeger.tutorial.entities.player.rabbit;
 
-import java.util.Random;
 import java.util.Set;
 
 import com.github.hanyaeger.api.AnchorPoint;
@@ -12,20 +11,20 @@ import com.github.hanyaeger.api.entities.SceneBorderTouchingWatcher;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.github.hanyaeger.api.scenes.SceneBorder;
 import com.github.hanyaeger.api.userinput.KeyListener;
-import com.github.hanyaeger.tutorial.entities.hol;
-import com.github.hanyaeger.tutorial.entities.foliage.grass;
+import com.github.hanyaeger.tutorial.entities.Hol;
+import com.github.hanyaeger.tutorial.entities.foliage.Kropsla;
 
 import javafx.scene.input.KeyCode;
 
-public class rabbit extends DynamicSpriteEntity implements KeyListener,SceneBorderTouchingWatcher,Collider,Collided{
+public class Rabbit extends DynamicSpriteEntity implements KeyListener,Collider,Collided,SceneBorderTouchingWatcher{
     final int WALKSPEED = 2;
     final int RUNSPEED = 5;
     int speed = WALKSPEED;
     int score = 0;
     boolean inHol = false;
-    hol hol;
+    Hol hol;
     String naam = "speler";
-    public rabbit(Coordinate2D location){
+    public Rabbit(Coordinate2D location){
         super("sprites/hanny.png", location, new Size(20,40), 1, 2);
         setAnchorPoint(AnchorPoint.CENTER_CENTER);
     }
@@ -41,7 +40,7 @@ public void onPressedKeysChange(Set<KeyCode> pressedKeys){
 
     if(pressedKeys.contains(KeyCode.SPACE)&&touchesHol()){
         inHol = !inHol;
-        setAnchorLocation(hol.getLocation());
+        setAnchorLocation(hol.getAnchorLocation());
         setSpeed(0);
     }
 
@@ -102,7 +101,7 @@ public void notifyBoundaryTouching(SceneBorder border){
 private boolean touchesHol(){
     Coordinate2D location =  getAnchorLocation();
     if(hol != null){
-        if(location.distance(hol.getLocation())<30){
+        if(location.distance(hol.getAnchorLocation())<30){
             return true;
         }
     }
@@ -111,12 +110,11 @@ private boolean touchesHol(){
 
 @Override
 public void onCollision(Collider object){
-    if(object instanceof grass){
-        ((grass) object).newLocation();
+    if(object instanceof Kropsla){
+        ((Kropsla) object).newLocation();
         score+=1;
-    }if(object instanceof hol){
-        hol = ((hol)object);
+    }if(object instanceof Hol){
+        hol = ((Hol)object);
     }
 }
-    
 }
