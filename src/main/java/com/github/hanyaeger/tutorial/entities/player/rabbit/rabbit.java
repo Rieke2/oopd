@@ -1,5 +1,7 @@
 package com.github.hanyaeger.tutorial.entities.player.rabbit;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import com.github.hanyaeger.api.AnchorPoint;
@@ -22,7 +24,7 @@ public class Rabbit extends DynamicSpriteEntity implements KeyListener,Collider,
     int speed = WALKSPEED;
     int score = 0;
     boolean inHol = false;
-    Hol hol;
+    List<Hol> holen = new ArrayList<Hol>();
     String naam = "speler";
     public Rabbit(Coordinate2D location){
         super("sprites/hanny.png", location, new Size(20,40), 1, 2);
@@ -38,10 +40,13 @@ public void onPressedKeysChange(Set<KeyCode> pressedKeys){
     boolean left = pressedKeys.contains(KeyCode.LEFT)||pressedKeys.contains(KeyCode.A);
     boolean right = pressedKeys.contains(KeyCode.RIGHT)||pressedKeys.contains(KeyCode.D);
 
-    if(pressedKeys.contains(KeyCode.SPACE)&&touchesHol()){
+    if(pressedKeys.contains(KeyCode.SPACE)&&touchesHol()!=-1){
+        int i = touchesHol();
         inHol = !inHol;
-        setAnchorLocation(hol.getAnchorLocation());
+        setAnchorLocation(holen.get(i).getAnchorLocation());
         setSpeed(0);
+    }else if(pressedKeys.contains(KeyCode.SPACE)){
+        System.out.println(touchesHol());
     }
 
     if(pressedKeys.contains(KeyCode.SHIFT)){
@@ -51,6 +56,7 @@ public void onPressedKeysChange(Set<KeyCode> pressedKeys){
     }
 
     if(!inHol){
+        setOpacity(1);
         if(left&&!right){
             a=270d;
         } else if(right&&!left){
@@ -73,6 +79,8 @@ public void onPressedKeysChange(Set<KeyCode> pressedKeys){
         }else if(a==0.0&&b==0.0){
             setSpeed(0);
         }
+    } else {
+        setOpacity(0.3);
     }
 
 }
@@ -98,14 +106,14 @@ public void notifyBoundaryTouching(SceneBorder border){
         }
 }
 
-private boolean touchesHol(){
+private int touchesHol(){
     Coordinate2D location =  getAnchorLocation();
-    if(hol != null){
-        if(location.distance(hol.getAnchorLocation())<30){
-            return true;
+    for(int i=0;i<holen.size();i++){
+        if(location.distance(holen.get(i).getAnchorLocation())<30){
+            return i;
         }
     }
-    return false;
+    return -1;
 }
 
 @Override
@@ -114,7 +122,15 @@ public void onCollision(Collider object){
         ((Kropsla) object).newLocation();
         score+=1;
     }if(object instanceof Hol){
-        hol = ((Hol)object);
+        boolean h = false;
+        for(Hol hol : holen){
+            if(object.equals(hol)){
+                h = true;
+            }
+        }
+        if(!h){
+            holen.add((Hol)object)  ;
+        }
     }
 }
 }
