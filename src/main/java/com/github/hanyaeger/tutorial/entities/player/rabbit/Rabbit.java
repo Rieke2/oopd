@@ -13,8 +13,10 @@ import com.github.hanyaeger.api.entities.SceneBorderTouchingWatcher;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 import com.github.hanyaeger.api.scenes.SceneBorder;
 import com.github.hanyaeger.api.userinput.KeyListener;
+import com.github.hanyaeger.tutorial.RabbitSurvival;
 import com.github.hanyaeger.tutorial.entities.Hol;
 import com.github.hanyaeger.tutorial.entities.foliage.Kropsla;
+import com.github.hanyaeger.tutorial.entities.vijanden.Vijand;
 
 import javafx.scene.input.KeyCode;
 
@@ -26,9 +28,11 @@ public class Rabbit extends DynamicSpriteEntity implements KeyListener,Collider,
     boolean inHol = false;
     List<Hol> holen = new ArrayList<Hol>();
     String naam = "speler";
-    public Rabbit(Coordinate2D location){
+    RabbitSurvival rabbitSurvival;
+    public Rabbit(Coordinate2D location,RabbitSurvival rabbitSurvival){
         super("sprites/hanny.png", location, new Size(20,40), 1, 2);
         setAnchorPoint(AnchorPoint.CENTER_CENTER);
+        this.rabbitSurvival = rabbitSurvival;
     }
 
     @Override
@@ -45,8 +49,6 @@ public void onPressedKeysChange(Set<KeyCode> pressedKeys){
         inHol = !inHol;
         setAnchorLocation(holen.get(i).getAnchorLocation());
         setSpeed(0);
-    }else if(pressedKeys.contains(KeyCode.SPACE)){
-        System.out.println(touchesHol());
     }
 
     if(pressedKeys.contains(KeyCode.SHIFT)){
@@ -121,7 +123,7 @@ public void onCollision(Collider object){
     if(object instanceof Kropsla){
         ((Kropsla) object).newLocation();
         score+=1;
-    }if(object instanceof Hol){
+    }else if(object instanceof Hol){
         boolean h = false;
         for(Hol hol : holen){
             if(object.equals(hol)){
@@ -131,6 +133,16 @@ public void onCollision(Collider object){
         if(!h){
             holen.add((Hol)object)  ;
         }
+    }else if(object instanceof Vijand){
+        gameOver();
     }
+}
+
+public boolean inHol(){
+    return inHol;
+}
+
+public void gameOver(){
+    rabbitSurvival.setActiveScene(2);
 }
 }
