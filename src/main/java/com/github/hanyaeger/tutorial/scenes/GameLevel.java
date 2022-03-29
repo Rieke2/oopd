@@ -20,6 +20,7 @@ import javafx.scene.paint.Color;
 public class GameLevel extends DynamicScene implements EntitySpawnerContainer{
     int aantalStruiken = 3;
     int aantalSla = 3;
+    int aantalHolen = 2;
     RabbitSurvival rabbitSurvival;
     Vijand rSlang;
     Rabbit player;
@@ -30,17 +31,15 @@ public class GameLevel extends DynamicScene implements EntitySpawnerContainer{
 
     @Override
     public void setupScene() {
-        // TODO Auto-generated method stub
-        setBackgroundColor(Color.GREEN);   
-        System.out.println("leve");     
+        setBackgroundColor(Color.GREEN); 
     }
 
     @Override
     public void setupEntities() {
-        // TODO Auto-generated method stub
-        
-        Hol hol = new Hol(getRandomLocation());
-        addEntity(hol);
+        for(int i=0;i<aantalHolen;i++){
+            Hol hol = new Hol(getRandomLocation());
+            addEntity(hol);
+        }
         for(int i=0;i<aantalStruiken;i++){
             Struik struik = new Struik(getRandomLocation());
             addEntity(struik);

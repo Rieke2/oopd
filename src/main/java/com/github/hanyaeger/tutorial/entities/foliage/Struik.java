@@ -1,5 +1,6 @@
 package com.github.hanyaeger.tutorial.entities.foliage;
 
+import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
 import com.github.hanyaeger.api.entities.Collided;
@@ -10,7 +11,7 @@ public class Struik extends DynamicSpriteEntity implements Collider,Collided {
 
     public Struik(Coordinate2D initialLocation) {
         super("sprites/coral1.png", initialLocation, new Size(40,40));
-        //TODO Auto-generated constructor stub
+        setAnchorPoint(AnchorPoint.CENTER_CENTER);
     }
 
     @Override

@@ -62,7 +62,7 @@ public void onPressedKeysChange(Set<KeyCode> pressedKeys){
         speed = WALKSPEED;
     }
 
-    if(!inHol){
+    //if(!inHol){
         if(left&&!right){
             a=270d;
         } else if(right&&!left){
@@ -85,7 +85,7 @@ public void onPressedKeysChange(Set<KeyCode> pressedKeys){
         }else if(a==0.0&&b==0.0){
             setSpeed(0);
         }
-    }
+    //}
 
 }
 
@@ -132,7 +132,7 @@ private boolean touchesStruik(){
 
 @Override
 public void onCollision(Collider object){
-    if(object instanceof Kropsla){
+    if(object instanceof Kropsla && !inHol()){
         ((Kropsla) object).newLocation();
         score+=1;
     }else if(object instanceof Hol){
@@ -157,7 +157,9 @@ public void onCollision(Collider object){
         }
     }
     if(object instanceof Vijand || object instanceof Gif){
-        gameOver();
+        if(!inHol()){
+            gameOver();
+        }
     }
 }
 
