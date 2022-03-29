@@ -1,11 +1,14 @@
 package com.github.hanyaeger.tutorial.scenes;
 
+import java.util.Random;
+
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.EntitySpawnerContainer;
 import com.github.hanyaeger.api.scenes.DynamicScene;
 import com.github.hanyaeger.tutorial.RabbitSurvival;
 import com.github.hanyaeger.tutorial.entities.Hol;
 import com.github.hanyaeger.tutorial.entities.foliage.Kropsla;
+import com.github.hanyaeger.tutorial.entities.foliage.Struik;
 import com.github.hanyaeger.tutorial.entities.player.rabbit.Rabbit;
 import com.github.hanyaeger.tutorial.entities.vijanden.GifSpawner;
 import com.github.hanyaeger.tutorial.entities.vijanden.RodeSlang;
@@ -15,8 +18,8 @@ import com.github.hanyaeger.tutorial.entities.vijanden.Wolf;
 import javafx.scene.paint.Color;
 
 public class GameLevel extends DynamicScene implements EntitySpawnerContainer{
-    int swordfishX = 3;
-    int swordfishY = 2;
+    int aantalStruiken = 3;
+    int aantalSla = 3;
     RabbitSurvival rabbitSurvival;
     Vijand rSlang;
     Rabbit player;
@@ -36,15 +39,21 @@ public class GameLevel extends DynamicScene implements EntitySpawnerContainer{
     public void setupEntities() {
         // TODO Auto-generated method stub
         
-        Hol hol = new Hol(new Coordinate2D(200,200));
+        Hol hol = new Hol(getRandomLocation());
         addEntity(hol);
+        for(int i=0;i<aantalStruiken;i++){
+            Struik struik = new Struik(getRandomLocation());
+            addEntity(struik);
+        }
         player = new Rabbit(new Coordinate2D(100,100),rabbitSurvival);
         addEntity(player);
-        Kropsla sla = new Kropsla(new Coordinate2D(0,0));
-        addEntity(sla);
-        Vijand wolf = new Wolf(new Coordinate2D(300,300),player);
+        for(int i=0;i<aantalSla;i++){
+            Kropsla sla = new Kropsla(getRandomLocation());
+            addEntity(sla);
+        }
+        Vijand wolf = new Wolf(getRandomLocation(),player);
         addEntity(wolf);
-        rSlang = new RodeSlang(new Coordinate2D(500,100),player);
+        rSlang = new RodeSlang(getRandomLocation(),player);
         addEntity(rSlang);
     }
 
@@ -52,6 +61,11 @@ public class GameLevel extends DynamicScene implements EntitySpawnerContainer{
     public void setupEntitySpawners() {
         addEntitySpawner(new GifSpawner(rSlang,player));
     }  
+
+    private Coordinate2D getRandomLocation(){
+        Random random = new Random();
+        return new Coordinate2D(random.nextInt((int)getWidth()),random.nextInt((int)getHeight()));
+    }
     
 }
 

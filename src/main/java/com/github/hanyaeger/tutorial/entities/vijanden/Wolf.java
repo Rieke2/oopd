@@ -10,7 +10,8 @@ import com.github.hanyaeger.tutorial.entities.player.rabbit.Rabbit;
 import com.github.hanyaeger.api.Size;
 
 public class Wolf extends Vijand implements Collider,Collided,UpdateExposer{
-    int range = 100;
+    int range = 200;
+    int struikRange = 50;
     double speed = 2;
     static double walkSpeed = 1;
     Coordinate2D idleGoal = new Coordinate2D(100,100);
@@ -27,7 +28,8 @@ public class Wolf extends Vijand implements Collider,Collided,UpdateExposer{
 
     @Override
     public void move() {
-        if(rabbit.getAnchorLocation().distance(getAnchorLocation())<range&&!rabbit.inHol()){
+        double distance = rabbit.getAnchorLocation().distance(getAnchorLocation());
+        if((distance<range&&!rabbit.inHol()&&!rabbit.inStruik())||(distance<struikRange&&!rabbit.inHol())){
             setMotion(speed,angleTo(rabbit));
         } else {
             idle();
