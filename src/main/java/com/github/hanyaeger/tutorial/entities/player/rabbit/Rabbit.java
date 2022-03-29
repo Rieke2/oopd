@@ -19,6 +19,7 @@ import com.github.hanyaeger.tutorial.entities.Hol;
 import com.github.hanyaeger.tutorial.entities.foliage.Kropsla;
 import com.github.hanyaeger.tutorial.entities.foliage.Struik;
 import com.github.hanyaeger.tutorial.entities.vijanden.Gif;
+import com.github.hanyaeger.tutorial.entities.vijanden.GroeneSlang;
 import com.github.hanyaeger.tutorial.entities.vijanden.Vijand;
 
 import javafx.scene.input.KeyCode;
@@ -157,8 +158,14 @@ public void onCollision(Collider object){
         }
     }
     if(object instanceof Vijand || object instanceof Gif){
-        if(!inHol()){
-            gameOver();
+        if(object instanceof GroeneSlang){
+            if(inHol==((GroeneSlang)object).inHol()){
+                gameOver();
+            }
+        }else {
+            if(!inHol()){
+                gameOver();
+            } 
         }
     }
 }
