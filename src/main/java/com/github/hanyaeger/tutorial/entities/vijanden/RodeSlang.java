@@ -13,24 +13,19 @@ public class RodeSlang extends Vijand implements Collider,Collided,UpdateExposer
     static double walkSpeed = 0.5;
     Coordinate2D idleGoal;
     int spittingRange = 100;
+    int struikRange = 100;
     public RodeSlang(Coordinate2D location,Rabbit rabbit) {
         super("sprites/swordfish.png", location, new Size(20,40),1,2,rabbit,walkSpeed);
     }
 
     @Override
     void move() {
-        if(rabbit.getAnchorLocation().distance(getAnchorLocation())<range&&!rabbit.inHol()){
+        double distance = rabbit.getAnchorLocation().distance(getAnchorLocation());
+        if((distance<range&&!rabbit.inHol()&&!rabbit.inStruik())||(distance<struikRange&&!rabbit.inHol())){
             setMotion(speed,angleTo(rabbit));
-            if(rabbit.getAnchorLocation().distance(getAnchorLocation())<spittingRange&&!rabbit.inHol()){
-                spit();
-            }
         } else {
             idle();
         }
-    }
-
-    private void spit(){
-
     }
 
     @Override
