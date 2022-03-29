@@ -1,7 +1,6 @@
 package com.github.hanyaeger.tutorial.scenes;
 
 import com.github.hanyaeger.api.scenes.StaticScene;
-import com.github.hanyaeger.tutorial.RabbitSurvival;
 
 public class EindScherm extends StaticScene{
 

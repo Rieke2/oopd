@@ -16,6 +16,7 @@ import com.github.hanyaeger.api.userinput.KeyListener;
 import com.github.hanyaeger.tutorial.RabbitSurvival;
 import com.github.hanyaeger.tutorial.entities.Hol;
 import com.github.hanyaeger.tutorial.entities.foliage.Kropsla;
+import com.github.hanyaeger.tutorial.entities.vijanden.Gif;
 import com.github.hanyaeger.tutorial.entities.vijanden.Vijand;
 
 import javafx.scene.input.KeyCode;
@@ -133,7 +134,7 @@ public void onCollision(Collider object){
         if(!h){
             holen.add((Hol)object)  ;
         }
-    }else if(object instanceof Vijand){
+    }else if(object instanceof Vijand || object instanceof Gif){
         gameOver();
     }
 }
