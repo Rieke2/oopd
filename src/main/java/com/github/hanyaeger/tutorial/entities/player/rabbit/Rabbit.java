@@ -7,6 +7,7 @@ import java.util.Set;
 import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
+import com.github.hanyaeger.api.UpdateExposer;
 import com.github.hanyaeger.api.entities.Collided;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.SceneBorderTouchingWatcher;
@@ -16,17 +17,22 @@ import com.github.hanyaeger.api.userinput.KeyListener;
 import com.github.hanyaeger.tutorial.RabbitSurvival;
 import com.github.hanyaeger.tutorial.entities.Hol;
 import com.github.hanyaeger.tutorial.entities.foliage.Kropsla;
+import com.github.hanyaeger.tutorial.entities.foliage.Struik;
+import com.github.hanyaeger.tutorial.entities.vijanden.Gif;
+import com.github.hanyaeger.tutorial.entities.vijanden.GroeneSlang;
 import com.github.hanyaeger.tutorial.entities.vijanden.Vijand;
 
 import javafx.scene.input.KeyCode;
 
-public class Rabbit extends DynamicSpriteEntity implements KeyListener,Collider,Collided,SceneBorderTouchingWatcher{
+public class Rabbit extends DynamicSpriteEntity implements KeyListener,Collider,Collided,SceneBorderTouchingWatcher,UpdateExposer{
     final int WALKSPEED = 2;
     final int RUNSPEED = 5;
     int speed = WALKSPEED;
     int score = 0;
     boolean inHol = false;
+    boolean inStruik = false;
     List<Hol> holen = new ArrayList<Hol>();
+    List<Struik> struiken = new ArrayList<Struik>();
     String naam = "speler";
     RabbitSurvival rabbitSurvival;
     public Rabbit(Coordinate2D location,RabbitSurvival rabbitSurvival){
@@ -57,8 +63,7 @@ public void onPressedKeysChange(Set<KeyCode> pressedKeys){
         speed = WALKSPEED;
     }
 
-    if(!inHol){
-        setOpacity(1);
+    //if(!inHol){
         if(left&&!right){
             a=270d;
         } else if(right&&!left){
@@ -81,9 +86,7 @@ public void onPressedKeysChange(Set<KeyCode> pressedKeys){
         }else if(a==0.0&&b==0.0){
             setSpeed(0);
         }
-    } else {
-        setOpacity(0.3);
-    }
+    //}
 
 }
 
@@ -118,9 +121,19 @@ private int touchesHol(){
     return -1;
 }
 
+private boolean touchesStruik(){
+    Coordinate2D location = getAnchorLocation();
+    for(int i=0;i<struiken.size();i++){
+        if(location.distance(struiken.get(i).getAnchorLocation())<30){
+            return true;
+        }
+    }
+    return false;
+}
+
 @Override
 public void onCollision(Collider object){
-    if(object instanceof Kropsla){
+    if(object instanceof Kropsla && !inHol()){
         ((Kropsla) object).newLocation();
         score+=1;
     }else if(object instanceof Hol){
@@ -133,8 +146,27 @@ public void onCollision(Collider object){
         if(!h){
             holen.add((Hol)object)  ;
         }
-    }else if(object instanceof Vijand){
-        gameOver();
+    }else if(object instanceof Struik){
+        boolean s = false;
+        for(Struik struik : struiken){
+            if(object.equals(struik)){
+                s = true;
+            }
+        }
+        if(!s){
+            struiken.add((Struik)object)  ;
+        }
+    }
+    if(object instanceof Vijand || object instanceof Gif){
+        if(object instanceof GroeneSlang){
+            if(inHol==((GroeneSlang)object).inHol()){
+                gameOver();
+            }
+        }else {
+            if(!inHol()){
+                gameOver();
+            } 
+        }
     }
 }
 
@@ -142,7 +174,33 @@ public boolean inHol(){
     return inHol;
 }
 
+public boolean inStruik(){
+    return inStruik;
+}
+
 public void gameOver(){
     rabbitSurvival.setActiveScene(2);
+}
+
+private boolean isInvisible(){
+    if(inHol||inStruik){
+        return true;
+    }else {
+        return false;
+    }
+}
+
+@Override
+public void explicitUpdate(long timestamp) {
+    if(touchesStruik()){
+        inStruik = true;
+    } else {
+        inStruik = false;
+    }
+    if(isInvisible()){
+        setOpacity(0.3);
+    }else{
+        setOpacity(1);
+    }
 }
 }

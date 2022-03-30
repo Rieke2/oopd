@@ -16,20 +16,21 @@ import javafx.scene.text.FontWeight;
 
 public class sceneChangeButton extends TextEntity implements MouseButtonPressedListener {
     int scene;
-    RabbitSurvival waterworld;
+    RabbitSurvival rabbitsurvival;
   
-public sceneChangeButton(Coordinate2D initialLocation,int scene,RabbitSurvival waterworld){
-    super(initialLocation,"Play game");
+public sceneChangeButton(Coordinate2D initialLocation,int scene,String Buttontext,RabbitSurvival rabbitsurvival){
+    super(initialLocation,Buttontext);
     setFill(Color.PURPLE);
     setFont(Font.font("Roboto", FontWeight.BOLD, 30));
+    setAnchorPoint(AnchorPoint.CENTER_CENTER);
     this.scene=scene;
-    this.waterworld=waterworld;
+    this.rabbitsurvival=rabbitsurvival;
 }
 
 @Override
 public void onMouseButtonPressed(MouseButton button, Coordinate2D coordinate2d) {
     // TODO Auto-generated method stub
-    waterworld.setActiveScene(scene);
+    rabbitsurvival.setActiveScene(scene);
 }
 
 
