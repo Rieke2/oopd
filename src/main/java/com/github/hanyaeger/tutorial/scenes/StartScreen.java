@@ -13,38 +13,37 @@ import javafx.scene.text.FontWeight;
 
 public class StartScreen extends StaticScene {
 
-    private RabbitSurvival waterworld;
+    private RabbitSurvival rabbitsurvival;
 
-    public StartScreen(RabbitSurvival waterworld){
-        this.waterworld = waterworld;
+    public StartScreen(RabbitSurvival rabbitsurvival){
+        this.rabbitsurvival = rabbitsurvival;
     }
 
 
     @Override
     public void setupScene(){
-        setBackgroundImage("backgrounds/background1.jpg");
+        // setBackgroundImage("backgrounds/background1.jpg");
+        setBackgroundColor(Color.DIMGREY);
     }
 
 
     @Override
     public void setupEntities(){
-        var waterworldText = new TextEntity(
-            new Coordinate2D(getWidth() / 2, getHeight() / 2),
-            "Waterworld"
-        );
-        waterworldText.setAnchorPoint(AnchorPoint.CENTER_CENTER);
-        waterworldText.setFill(Color.DARKBLUE);
-        waterworldText.setFont(Font.font("Roboto", FontWeight.SEMI_BOLD, 80));
-        addEntity(waterworldText);
+        var rabbitsurvivalText = new TextEntity(
+                new Coordinate2D(getWidth() / 2, getHeight() / 4), "Rabbit Survival");
+
+        rabbitsurvivalText.setAnchorPoint(AnchorPoint.CENTER_CENTER);
+        rabbitsurvivalText.setFill(Color.DARKSEAGREEN);
+        rabbitsurvivalText.setFont(Font.font("Roboto", FontWeight.SEMI_BOLD, 50));
+        addEntity(rabbitsurvivalText);
         Coordinate2D location = new Coordinate2D(0,0);
-        sceneChangeButton button1 = new sceneChangeButton(location,1,waterworld);
-        System.out.println("dlsa");
-        addEntity(button1);
+        sceneChangeButton button2 = new sceneChangeButton(new Coordinate2D(getWidth() / 2 , getHeight() / 2),1, "Start game", rabbitsurvival);
+        addEntity(button2);
     }
 
     public void method(Coordinate2D initialLocation,String text){
         System.out.println(text);
     }
 
-    
+
 }
