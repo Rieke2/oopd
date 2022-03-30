@@ -32,7 +32,7 @@ public class GroeneSlang extends Vijand implements Collider,Collided,UpdateExpos
     }
 
     /**
-     * doet niet zo veel
+     * nodig voor collision
      */
     @Override
     public void onCollision(Collider collidingObject) {

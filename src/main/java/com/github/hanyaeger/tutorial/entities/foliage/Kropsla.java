@@ -27,7 +27,7 @@ public class Kropsla extends DynamicSpriteEntity implements Collider, Collided {
     }
 
     /**
-     * doet niet zo veel
+     * nodig voor collision
      */
     @Override
     public void onCollision(Collider collidingObject) {
