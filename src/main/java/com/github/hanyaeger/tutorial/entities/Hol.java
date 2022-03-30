@@ -29,7 +29,7 @@ public class Hol extends DynamicCircleEntity implements Collider,Collided{
     }
 
     /**
-     * doet niet zo veel
+     * nodig voor collision
      */
     @Override
     public void onCollision(Collider collidingObject) {

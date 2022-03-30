@@ -27,7 +27,7 @@ public class Wolf extends Vijand implements Collider,Collided,UpdateExposer{
     }
 
     /**
-     * doet niet zo veel
+     * nodig voor collision
      */
     @Override
     public void onCollision(Collider collidingObject) {
