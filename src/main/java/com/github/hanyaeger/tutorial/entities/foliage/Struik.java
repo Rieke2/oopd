@@ -10,7 +10,7 @@ import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 public class Struik extends DynamicSpriteEntity implements Collider,Collided {
 
     public Struik(Coordinate2D initialLocation) {
-        super("sprites/coral1.png", initialLocation, new Size(40,40));
+        super("sprites/Bush.png", initialLocation, new Size(80,80));
         setAnchorPoint(AnchorPoint.CENTER_CENTER);
     }
 

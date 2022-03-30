@@ -20,7 +20,7 @@ public class GroeneSlang extends Vijand implements Collider,Collided,UpdateExpos
     ArrayList<Hol> holen;
 
     public GroeneSlang(Coordinate2D location, Rabbit rabbit,ArrayList<Hol> holen) {
-        super("sprites/coral3.png", location, new Size(20,20),1,2, rabbit, walkSpeed);
+        super("sprites/groeneSlang.png", location, new Size(40,40),1,1, rabbit, walkSpeed);
         System.out.println("groen");
         this.holen = holen;
     }

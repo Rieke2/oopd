@@ -36,7 +36,7 @@ public class Rabbit extends DynamicSpriteEntity implements KeyListener,Collider,
     String naam = "speler";
     RabbitSurvival rabbitSurvival;
     public Rabbit(Coordinate2D location,RabbitSurvival rabbitSurvival){
-        super("sprites/hanny.png", location, new Size(20,40), 1, 2);
+        super("sprites/Rabbit.png", location, new Size(20,20));
         setAnchorPoint(AnchorPoint.CENTER_CENTER);
         this.rabbitSurvival = rabbitSurvival;
     }
