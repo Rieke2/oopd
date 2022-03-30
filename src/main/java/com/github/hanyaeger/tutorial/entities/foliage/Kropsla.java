@@ -8,7 +8,8 @@ import com.github.hanyaeger.api.entities.Collided;
 import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 
-public class Kropsla extends DynamicSpriteEntity implements Collider, Collided {
+public class Kropsla extends DynamicSpriteEntity implements Voedsel,Collider, Collided {
+    int punten = 0;
     /**
      * @Davey0485
      * @Rieke2
@@ -33,5 +34,14 @@ public class Kropsla extends DynamicSpriteEntity implements Collider, Collided {
     public void onCollision(Collider collidingObject) {
         // TODO Auto-generated method stub
         
+    }
+
+    /**
+     * 
+     * @return punten die je krijgt als je het opeet
+     */
+    @Override
+    public int getPunten() {
+        return punten;
     }
 }

@@ -48,7 +48,7 @@ public class GameLevel extends DynamicScene implements EntitySpawnerContainer,Up
     }
 
     /**
-     * setup scene
+     * verandert achtergrond
      */
     @Override
     public void setupScene() {
@@ -56,7 +56,7 @@ public class GameLevel extends DynamicScene implements EntitySpawnerContainer,Up
     }
 
     /**
-     * setup entities
+     * plaatst entities
      */
     @Override
     public void setupEntities() {

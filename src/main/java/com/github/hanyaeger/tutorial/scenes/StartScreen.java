@@ -35,7 +35,7 @@ public class StartScreen extends StaticScene {
     }
 
     /**
-     * setup entities
+     * plaatst de titel tekst en de knop
      */
     @Override
     public void setupEntities(){
@@ -49,10 +49,4 @@ public class StartScreen extends StaticScene {
         sceneChangeButton button2 = new sceneChangeButton(new Coordinate2D(getWidth() / 2 , getHeight() / 2),1, "Start game", rabbitsurvival);
         addEntity(button2);
     }
-
-    public void method(Coordinate2D initialLocation,String text){
-        System.out.println(text);
-    }
-
-
 }
