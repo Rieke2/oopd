@@ -12,6 +12,11 @@ public class Hol extends DynamicCircleEntity implements Collider,Collided{
     Coordinate2D location;
     int radius = 15;
 
+    /**
+     * @Davey0485
+     * @Rieke2
+     * @param initialLocation locatie
+     */
     public Hol(Coordinate2D initialLocation) {
         super(initialLocation);
         this.location = initialLocation;
@@ -23,6 +28,9 @@ public class Hol extends DynamicCircleEntity implements Collider,Collided{
         setStrokeWidth(4);
     }
 
+    /**
+     * doet niet zo veel
+     */
     @Override
     public void onCollision(Collider collidingObject) {
         // TODO Auto-generated method stub

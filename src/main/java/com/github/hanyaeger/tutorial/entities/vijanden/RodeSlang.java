@@ -14,10 +14,19 @@ public class RodeSlang extends Vijand implements Collider,Collided,UpdateExposer
     Coordinate2D idleGoal;
     int spittingRange = 100;
     int struikRange = 100;
+    /**
+     * @Davey0485
+     * @Rieke2
+     * @param location locatie
+     * @param rabbit speler
+     */
     public RodeSlang(Coordinate2D location,Rabbit rabbit) {
-        super("sprites/rodeSlang.png", location, new Size(40,40),1,1,rabbit,walkSpeed);
+        super("sprites/rodeSlang.png", location, new Size(40,40),rabbit,walkSpeed);
     }
 
+    /**
+     * beweegt de slang
+     */
     @Override
     void move() {
         double distance = rabbit.getAnchorLocation().distance(getAnchorLocation());
@@ -28,22 +37,36 @@ public class RodeSlang extends Vijand implements Collider,Collided,UpdateExposer
         }
     }
 
+    /**
+     * doet niet zo veel
+     */
     @Override
     public void onCollision(Collider collidingObject) {
         // TODO Auto-generated method stub
         
     }
 
+    /**
+     * beweegt
+     */
     @Override
     public void explicitUpdate(long timestamp) {
         // TODO Auto-generated method stub
         move();
     }
     
+    /**
+     * 
+     * @return range
+     */
     public int getRange(){
         return range;
     }
 
+    /**
+     * 
+     * @return spittingRange
+     */
     public int getSpittingRange(){
         return spittingRange;
     }

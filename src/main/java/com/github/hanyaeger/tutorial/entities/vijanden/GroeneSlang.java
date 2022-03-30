@@ -19,17 +19,30 @@ public class GroeneSlang extends Vijand implements Collider,Collided,UpdateExpos
     boolean inHol = false;
     ArrayList<Hol> holen;
 
+    /**
+     * @Davey0485
+     * @Rieke2
+     * @param location locatie van de slang
+     * @param rabbit speler
+     * @param holen alle holen in het spel
+     */
     public GroeneSlang(Coordinate2D location, Rabbit rabbit,ArrayList<Hol> holen) {
-        super("sprites/groeneSlang.png", location, new Size(40,40),1,1, rabbit, walkSpeed);
+        super("sprites/groeneSlang.png", location, new Size(40,40), rabbit, walkSpeed);
         this.holen = holen;
     }
 
+    /**
+     * doet niet zo veel
+     */
     @Override
     public void onCollision(Collider collidingObject) {
         // TODO Auto-generated method stub
         
     }
 
+    /**
+     * beweegt de slang
+     */
     @Override
     public void move() {
         double distance = rabbit.getAnchorLocation().distance(getAnchorLocation());
@@ -52,6 +65,10 @@ public class GroeneSlang extends Vijand implements Collider,Collided,UpdateExpos
         }
     }
     
+    /**
+     * 
+     * @return het dichstbijzijndste hol
+     */
     private int dichstbijzijndeHol(){
         int h = 0;
         double a = 100000;
@@ -66,6 +83,9 @@ public class GroeneSlang extends Vijand implements Collider,Collided,UpdateExpos
         return h;
     }
 
+    /**
+     * regelt de opacity
+     */
     @Override
     public void explicitUpdate(long timestamp) {
         move();
@@ -76,6 +96,10 @@ public class GroeneSlang extends Vijand implements Collider,Collided,UpdateExpos
         }
     }
 
+    /**
+     * 
+     * @return inHol
+     */
     public boolean inHol(){
         return inHol;
     }

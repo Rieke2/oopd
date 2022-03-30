@@ -35,12 +35,22 @@ public class Rabbit extends DynamicSpriteEntity implements KeyListener,Collider,
     List<Struik> struiken = new ArrayList<Struik>();
     String naam = "speler";
     RabbitSurvival rabbitSurvival;
+    /**
+     * @Davey0485
+     * @Rieke2
+     * @param location locatie van de speler
+     * @param rabbitSurvival de game
+     */
     public Rabbit(Coordinate2D location,RabbitSurvival rabbitSurvival){
         super("sprites/Rabbit.png", location, new Size(20,20));
         setAnchorPoint(AnchorPoint.CENTER_CENTER);
         this.rabbitSurvival = rabbitSurvival;
     }
 
+    /**
+     * @param pressedKeys toetsen die op dit moment ingedrukt zijn
+     * regelt de besturing van de speler
+     */
     @Override
 public void onPressedKeysChange(Set<KeyCode> pressedKeys){
     double a = 0;
@@ -57,39 +67,33 @@ public void onPressedKeysChange(Set<KeyCode> pressedKeys){
         setSpeed(0);
     }
 
-    if(pressedKeys.contains(KeyCode.SHIFT)){
-   //     speed = RUNSPEED;
-    } else {
-        speed = WALKSPEED;
+    if(left&&!right){
+        a=270d;
+    } else if(right&&!left){
+        a=90d;
+    }
+    if(up&&!down){
+        b=180d;
+    } else if(down&&!up){
+        b=360d;
     }
 
-    //if(!inHol){
-        if(left&&!right){
-            a=270d;
-        } else if(right&&!left){
-            a=90d;
-        }
-        if(up&&!down){
-            b=180d;
-        } else if(down&&!up){
-            b=360d;
-        }
-
-        if(a==0.0&&b!=0.0){
-            setMotion(speed,b);
-        }else if(a!=0.0&&b==0.0){
-            setMotion(speed,a);
-        }else if(a!=0.0&&b!=0.0){
-            a = Math.toRadians(a);
-            b = Math.toRadians(b);
-            setMotion(speed,Math.toDegrees(Math.atan2((Math.sin(a)+Math.sin(b))/2,(Math.cos(a)+Math.cos(b))/2)));
-        }else if(a==0.0&&b==0.0){
-            setSpeed(0);
-        }
-    //}
-
+    if(a==0.0&&b!=0.0){
+        setMotion(speed,b);
+    }else if(a!=0.0&&b==0.0){
+        setMotion(speed,a);
+    }else if(a!=0.0&&b!=0.0){
+        a = Math.toRadians(a);
+        b = Math.toRadians(b);
+        setMotion(speed,Math.toDegrees(Math.atan2((Math.sin(a)+Math.sin(b))/2,(Math.cos(a)+Math.cos(b))/2)));
+    }else if(a==0.0&&b==0.0){
+        setSpeed(0);
+    }
 }
-
+/**
+ * @param border rand van het spel
+ * zorgt dat de speler niet buiten het veld gaat
+ */
 @Override
 public void notifyBoundaryTouching(SceneBorder border){
     setSpeed(0);
@@ -111,6 +115,10 @@ public void notifyBoundaryTouching(SceneBorder border){
         }
 }
 
+/**
+ * 
+ * @return hoeveelste hol de speler aanraakt, -1 als de speler geen hol aanraakt
+ */
 private int touchesHol(){
     Coordinate2D location =  getAnchorLocation();
     for(int i=0;i<holen.size();i++){
@@ -121,6 +129,10 @@ private int touchesHol(){
     return -1;
 }
 
+/**
+ * 
+ * @return true als de speler een struik aanraakt, anders false
+ */
 private boolean touchesStruik(){
     Coordinate2D location = getAnchorLocation();
     for(int i=0;i<struiken.size();i++){
@@ -131,6 +143,9 @@ private boolean touchesStruik(){
     return false;
 }
 
+/**
+ * @param object het object dat aangeraakt wordt
+ */
 @Override
 public void onCollision(Collider object){
     if(object instanceof Kropsla && !inHol()){
@@ -170,18 +185,32 @@ public void onCollision(Collider object){
     }
 }
 
+/**
+ * @return inHol
+ */
 public boolean inHol(){
     return inHol;
 }
 
+/**
+ * 
+ * @return inStruik
+ */
 public boolean inStruik(){
     return inStruik;
 }
 
+/**
+ * game over
+ */
 public void gameOver(){
     rabbitSurvival.setActiveScene(2);
 }
 
+/**
+ * 
+ * @return true als de speler niet zichtbaar is, anders false
+ */
 private boolean isInvisible(){
     if(inHol||inStruik){
         return true;
@@ -190,6 +219,10 @@ private boolean isInvisible(){
     }
 }
 
+/**
+ * zorgt voor de opacity van de speler
+ * @param timestamp
+ */
 @Override
 public void explicitUpdate(long timestamp) {
     if(touchesStruik()){
@@ -204,6 +237,10 @@ public void explicitUpdate(long timestamp) {
     }
 }
 
+/**
+ * 
+ * @return score
+ */
 public int getScore(){
     return score;
 }

@@ -8,12 +8,19 @@ import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 
 public class Struik extends DynamicSpriteEntity implements Collider,Collided {
-
+    /**
+     * @Davey0485
+     * @Rieke2
+     * @param initialLocation locatie van de struik
+     */
     public Struik(Coordinate2D initialLocation) {
         super("sprites/Bush.png", initialLocation, new Size(80,80));
         setAnchorPoint(AnchorPoint.CENTER_CENTER);
     }
 
+    /**
+     * doet niet zo veel
+     */
     @Override
     public void onCollision(Collider collidingObject) {
         // TODO Auto-generated method stub
