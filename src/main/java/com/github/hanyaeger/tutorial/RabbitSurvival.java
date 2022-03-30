@@ -7,6 +7,8 @@ import com.github.hanyaeger.tutorial.scenes.EindScherm;
 import com.github.hanyaeger.tutorial.scenes.GameLevel;
 
 public class RabbitSurvival extends YaegerGame {
+
+    EindScherm eindScherm;
     public static void main(String[]args){
         launch(args);
     }
@@ -20,9 +22,14 @@ public class RabbitSurvival extends YaegerGame {
 
     @Override
     public void setupScenes(){
+        eindScherm = new EindScherm(this);
         addScene(0, new StartScreen(this));
         addScene(1, new GameLevel(this));
-        addScene(2, new EindScherm(this));
+        addScene(2, eindScherm);
     }
     
+    public void setScore(int score){
+        eindScherm.setScore(score);
+        
+    }
 }
