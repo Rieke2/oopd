@@ -38,15 +38,26 @@ public class GameLevel extends DynamicScene implements EntitySpawnerContainer,Up
     String score = "";
     TextEntity rabbitsurvivalText;
 
+    /**
+     * @Davey0485
+     * @Rieke2
+     * @param rabbitSurvival de game
+     */
     public GameLevel(RabbitSurvival rabbitSurvival) {
         this.rabbitSurvival = rabbitSurvival;
     }
 
+    /**
+     * setup scene
+     */
     @Override
     public void setupScene() {
         setBackgroundColor(Color.GREEN); 
     }
 
+    /**
+     * setup entities
+     */
     @Override
     public void setupEntities() {
         for(int i=0;i<aantalHolen;i++){
@@ -93,16 +104,26 @@ public class GameLevel extends DynamicScene implements EntitySpawnerContainer,Up
     addEntity(rabbitsurvivalText);
     }
 
+    /**
+     * setup spawners
+     */
     @Override
     public void setupEntitySpawners() {
         addEntitySpawner(new GifSpawner(rSlang,player));
     }  
 
+    /**
+     * 
+     * @return random Coordinate2D
+     */
     private Coordinate2D getRandomLocation(){
         Random random = new Random();
         return new Coordinate2D(random.nextInt((int)getWidth()),random.nextInt((int)getHeight()));
     }
 
+    /**
+     * updates de score op het scherm
+     */
     private void updateScore(){
         if (player.getScore() < 10) {
             score ="00" + Integer.toString(player.getScore());
@@ -114,6 +135,9 @@ public class GameLevel extends DynamicScene implements EntitySpawnerContainer,Up
         rabbitsurvivalText.setText(score);
     }
 
+    /**
+     * updates score
+     */
     @Override
     public void explicitUpdate(long timestamp) {
         updateScore();

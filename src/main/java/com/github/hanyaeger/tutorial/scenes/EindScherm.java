@@ -16,18 +16,26 @@ public class EindScherm extends StaticScene{
 
     int score;
 
+    /**
+     * @Davey0485
+     * @Rieke2
+     * @param rabbitsurvival de game
+     */
     public EindScherm(RabbitSurvival rabbitsurvival){
         this.rabbitsurvival = rabbitsurvival;
     }
 
-    public EindScherm() {
-    }
-
+    /**
+     * setup scene
+     */
     @Override
     public void setupScene() {
         setBackgroundColor(Color.DIMGREY);
     }
 
+    /**
+     * setup entities
+     */
     @Override
     public void setupEntities() {
         var rabbitsurvivalText = new TextEntity(
@@ -44,7 +52,6 @@ public class EindScherm extends StaticScene{
         ScoreText.setFill(Color.DARKSEAGREEN);
         ScoreText.setFont(Font.font("Roboto", FontWeight.SEMI_BOLD, 50));
         addEntity(ScoreText);
-        Coordinate2D location = new Coordinate2D(0,0);
         sceneChangeButton button1 = new sceneChangeButton(new Coordinate2D(getWidth() / 2 , getHeight() / 2),0, "Herstart spel", rabbitsurvival);
         addEntity(button1);
     }

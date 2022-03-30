@@ -6,7 +6,12 @@ import com.github.hanyaeger.tutorial.entities.player.rabbit.Rabbit;
 public class GifSpawner extends EntitySpawner{
     RodeSlang slang;
     Rabbit rabbit;
-
+    /**
+     * @Davey0485
+     * @Rieke2
+     * @param slang slang waar de gifspawner bij hoort
+     * @param rabbit speler
+     */
     public GifSpawner(Vijand slang,Rabbit rabbit) {
         super(3000);
         //TODO Auto-generated constructor stub
@@ -14,6 +19,9 @@ public class GifSpawner extends EntitySpawner{
         this.rabbit = rabbit;
     }
 
+    /**
+     * spawnt gif
+     */
     @Override
     protected void spawnEntities() {
         if(slang.distanceTo(rabbit)<slang.getRange()&&!rabbit.inHol()){

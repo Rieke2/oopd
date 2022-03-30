@@ -15,18 +15,28 @@ public class StartScreen extends StaticScene {
 
     private RabbitSurvival rabbitsurvival;
 
+    /**
+     * @Davey0485
+     * @Rieke2
+     * @param rabbitsurvival de game
+     */
     public StartScreen(RabbitSurvival rabbitsurvival){
         this.rabbitsurvival = rabbitsurvival;
     }
 
 
+    /**
+     * setup scene
+     */
     @Override
     public void setupScene(){
         // setBackgroundImage("backgrounds/background1.jpg");
         setBackgroundColor(Color.DIMGREY);
     }
 
-
+    /**
+     * setup entities
+     */
     @Override
     public void setupEntities(){
         var rabbitsurvivalText = new TextEntity(

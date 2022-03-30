@@ -16,16 +16,28 @@ public class Wolf extends Vijand implements Collider,Collided,UpdateExposer{
     static double walkSpeed = 1;
     Coordinate2D idleGoal = new Coordinate2D(100,100);
 
+    /**
+     * @Davey0485
+     * @Rieke2
+     * @param location locatie
+     * @param rabbit speler
+     */
     public Wolf(Coordinate2D location,Rabbit rabbit) {
-        super("sprites/Wolf.png", location, new Size(60,60), 1, 2,rabbit,1);
+        super("sprites/Wolf.png", location, new Size(60,60),rabbit,1);
     }
 
+    /**
+     * doet niet zo veel
+     */
     @Override
     public void onCollision(Collider collidingObject) {
         // TODO Auto-generated method stub
         
     }
 
+    /**
+     * beweegt de wolf
+     */
     @Override
     public void move() {
         double distance = rabbit.getAnchorLocation().distance(getAnchorLocation());
@@ -36,6 +48,9 @@ public class Wolf extends Vijand implements Collider,Collided,UpdateExposer{
         }
     }
 
+    /**
+     * beweegt de wolf
+     */
     @Override
     public void explicitUpdate(long timestamp) {
         // TODO Auto-generated method stub
