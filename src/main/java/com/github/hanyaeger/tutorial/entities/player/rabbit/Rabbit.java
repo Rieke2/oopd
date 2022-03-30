@@ -29,7 +29,7 @@ public class Rabbit extends DynamicSpriteEntity implements KeyListener,Collider,
     final int RUNSPEED = 5;
     int speed = WALKSPEED;
     int score = 0;
-    boolean inHol = false;
+    boolean inHol = true;
     boolean inStruik = false;
     List<Hol> holen = new ArrayList<Hol>();
     List<Struik> struiken = new ArrayList<Struik>();

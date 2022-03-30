@@ -57,7 +57,7 @@ public class GameLevel extends DynamicScene implements EntitySpawnerContainer{
             addEntity(struik);
         }
 
-        player = new Rabbit(new Coordinate2D(100,100),rabbitSurvival);
+        player = new Rabbit(holen.get(0).getAnchorLocation(),rabbitSurvival);
         addEntity(player);
 
         for(int i=0;i<aantalSla;i++){
