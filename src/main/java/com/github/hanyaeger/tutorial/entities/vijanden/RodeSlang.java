@@ -15,7 +15,7 @@ public class RodeSlang extends Vijand implements Collider,Collided,UpdateExposer
     int spittingRange = 100;
     int struikRange = 100;
     public RodeSlang(Coordinate2D location,Rabbit rabbit) {
-        super("sprites/swordfish.png", location, new Size(20,40),1,2,rabbit,walkSpeed);
+        super("sprites/rodeSlang.png", location, new Size(40,40),1,1,rabbit,walkSpeed);
     }
 
     @Override

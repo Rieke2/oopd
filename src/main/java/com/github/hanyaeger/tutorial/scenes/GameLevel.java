@@ -59,6 +59,7 @@ public class GameLevel extends DynamicScene implements EntitySpawnerContainer{
         for(int i=0;i<aantalSla;i++){
             Kropsla sla = new Kropsla(getRandomLocation());
             addEntity(sla);
+            
         }
 
         for(int i=0;i<aantalWolven;i++){
