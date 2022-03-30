@@ -26,7 +26,7 @@ public class EindScherm extends StaticScene{
     }
 
     /**
-     * setup scene
+     * verandert achtergrondkleur
      */
     @Override
     public void setupScene() {
@@ -34,7 +34,7 @@ public class EindScherm extends StaticScene{
     }
 
     /**
-     * setup entities
+     * plaatst de tekst en de herstartknop
      */
     @Override
     public void setupEntities() {
@@ -56,9 +56,11 @@ public class EindScherm extends StaticScene{
         addEntity(button1);
     }
 
-    public void method(Coordinate2D initialLocation,String text){
-        System.out.println(text);
-    }
+    /**
+     * 
+     * @param score score gehaald
+     * updates de score
+     */
     public void setScore(int score){
         this.score = score;
     }

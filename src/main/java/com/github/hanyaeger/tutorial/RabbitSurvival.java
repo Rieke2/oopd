@@ -13,13 +13,18 @@ public class RabbitSurvival extends YaegerGame {
         launch(args);
     }
 
+    /**
+     * setup game
+     */
     @Override
     public void setupGame() {
         setGameTitle("Rabbit Survival");
         setSize(new Size(800, 600));
     }
 
-
+    /**
+     * setup scenes
+     */
     @Override
     public void setupScenes(){
         eindScherm = new EindScherm(this);
@@ -28,6 +33,10 @@ public class RabbitSurvival extends YaegerGame {
         addScene(2, eindScherm);
     }
     
+    /**
+     * updates de score
+     * @param score score
+     */
     public void setScore(int score){
         eindScherm.setScore(score);
         

@@ -8,9 +8,9 @@ import com.github.hanyaeger.tutorial.entities.player.rabbit.Rabbit;
 import com.github.hanyaeger.api.Size;
 
 public abstract class Vijand extends DynamicSpriteEntity{
-    Rabbit rabbit;
-    Coordinate2D idleGoal = getAnchorLocation();
-    double walkSpeed;
+    public Rabbit rabbit;
+    private Coordinate2D idleGoal = getAnchorLocation();
+    private double walkSpeed;
 
     /**
      * @Davey0485

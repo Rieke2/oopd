@@ -18,6 +18,7 @@ import com.github.hanyaeger.tutorial.RabbitSurvival;
 import com.github.hanyaeger.tutorial.entities.Hol;
 import com.github.hanyaeger.tutorial.entities.foliage.Kropsla;
 import com.github.hanyaeger.tutorial.entities.foliage.Struik;
+import com.github.hanyaeger.tutorial.entities.foliage.Voedsel;
 import com.github.hanyaeger.tutorial.entities.vijanden.Gif;
 import com.github.hanyaeger.tutorial.entities.vijanden.GroeneSlang;
 import com.github.hanyaeger.tutorial.entities.vijanden.Vijand;
@@ -145,11 +146,12 @@ private boolean touchesStruik(){
 
 /**
  * @param object het object dat aangeraakt wordt
+ * regelt de aanrakingen van de speler met de objecten
  */
 @Override
 public void onCollision(Collider object){
-    if(object instanceof Kropsla && !inHol()){
-        ((Kropsla) object).newLocation();
+    if(object instanceof Voedsel && !inHol()){
+        ((Voedsel) object).newLocation();
         score+=1;
     }else if(object instanceof Hol){
         boolean h = false;
