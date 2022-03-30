@@ -13,7 +13,7 @@ public abstract class Vijand extends DynamicSpriteEntity{
     double walkSpeed;
 
     protected Vijand(String resource, Coordinate2D location, Size size, int i, int j,Rabbit rabbit,double walkSpeed) {
-        super(resource, location, size,i,j);
+        super(resource, location, size);
         
         this.rabbit = rabbit;
         this.walkSpeed = walkSpeed;

@@ -17,7 +17,7 @@ public class Wolf extends Vijand implements Collider,Collided,UpdateExposer{
     Coordinate2D idleGoal = new Coordinate2D(100,100);
 
     public Wolf(Coordinate2D location,Rabbit rabbit) {
-        super("sprites/hanny.png", location, new Size(20,40), 1, 2,rabbit,1);
+        super("sprites/Wolf.png", location, new Size(60,60), 1, 2,rabbit,1);
     }
 
     @Override

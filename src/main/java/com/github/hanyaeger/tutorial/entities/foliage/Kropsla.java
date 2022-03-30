@@ -11,7 +11,7 @@ import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
 public class Kropsla extends DynamicSpriteEntity implements Collider, Collided {
 
     public Kropsla(final Coordinate2D location) {
-        super("sprites/coral2.png", location,new Size(20,20));
+        super("sprites/lettuce.png", location,new Size(30,30));
     }
     
     public void newLocation(){

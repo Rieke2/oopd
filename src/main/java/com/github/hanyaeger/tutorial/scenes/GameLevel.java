@@ -3,8 +3,10 @@ package com.github.hanyaeger.tutorial.scenes;
 import java.util.ArrayList;
 import java.util.Random;
 
+import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.EntitySpawnerContainer;
+import com.github.hanyaeger.api.entities.impl.TextEntity;
 import com.github.hanyaeger.api.scenes.DynamicScene;
 import com.github.hanyaeger.tutorial.RabbitSurvival;
 import com.github.hanyaeger.tutorial.entities.Hol;
@@ -18,6 +20,8 @@ import com.github.hanyaeger.tutorial.entities.vijanden.Vijand;
 import com.github.hanyaeger.tutorial.entities.vijanden.Wolf;
 
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 public class GameLevel extends DynamicScene implements EntitySpawnerContainer{
     int aantalStruiken = 3;
@@ -77,6 +81,14 @@ public class GameLevel extends DynamicScene implements EntitySpawnerContainer{
             Vijand gSlang = new GroeneSlang(getRandomLocation(),player,holen);
             addEntity(gSlang);
         }
+        
+        var rabbitsurvivalText = new TextEntity(
+                new Coordinate2D(getWidth() / 2, getHeight() / 4), "Rabbit Survival");
+                
+
+        rabbitsurvivalText.setAnchorPoint(AnchorPoint.CENTER_CENTER);
+        rabbitsurvivalText.setFill(Color.DARKSEAGREEN);
+        rabbitsurvivalText.setFont(Font.font("Roboto", FontWeight.SEMI_BOLD, 50));
     }
 
     @Override
