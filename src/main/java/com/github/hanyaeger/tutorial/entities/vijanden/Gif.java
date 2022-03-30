@@ -10,7 +10,7 @@ public class Gif extends DynamicSpriteEntity implements Collider,Collided{
     int speed = 3;
 
     public Gif(Coordinate2D initialLocation, int i,double angle) {
-        super("sprites/hanny.png",initialLocation,new Size(20,40), 1, 2);
+        super("sprites/gif.png",initialLocation,new Size(20,20));
         setMotion(speed,angle);
     }
 
