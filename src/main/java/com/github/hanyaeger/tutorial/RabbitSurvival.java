@@ -22,7 +22,7 @@ public class RabbitSurvival extends YaegerGame {
     public void setupScenes(){
         addScene(0, new StartScreen(this));
         addScene(1, new GameLevel(this));
-        addScene(2, new EindScherm());
+        addScene(2, new EindScherm(this));
     }
     
 }
