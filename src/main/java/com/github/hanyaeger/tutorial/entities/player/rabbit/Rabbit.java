@@ -203,4 +203,8 @@ public void explicitUpdate(long timestamp) {
         setOpacity(1);
     }
 }
+
+public int getScore(){
+    return score;
+}
 }

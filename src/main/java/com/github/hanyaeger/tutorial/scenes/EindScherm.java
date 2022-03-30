@@ -14,6 +14,8 @@ public class EindScherm extends StaticScene{
 
     private RabbitSurvival rabbitsurvival;
 
+    int score;
+
     public EindScherm(RabbitSurvival rabbitsurvival){
         this.rabbitsurvival = rabbitsurvival;
     }
@@ -30,11 +32,18 @@ public class EindScherm extends StaticScene{
     public void setupEntities() {
         var rabbitsurvivalText = new TextEntity(
                 new Coordinate2D(getWidth() / 2, getHeight() / 4), "Rabbit Survival");
-
+    
+        var ScoreText = new TextEntity(
+                new Coordinate2D(getWidth() / 2, getHeight() / 3), Integer.toString(score));
+    
         rabbitsurvivalText.setAnchorPoint(AnchorPoint.CENTER_CENTER);
         rabbitsurvivalText.setFill(Color.DARKSEAGREEN);
         rabbitsurvivalText.setFont(Font.font("Roboto", FontWeight.SEMI_BOLD, 50));
         addEntity(rabbitsurvivalText);
+        ScoreText.setAnchorPoint(AnchorPoint.CENTER_CENTER);
+        ScoreText.setFill(Color.DARKSEAGREEN);
+        ScoreText.setFont(Font.font("Roboto", FontWeight.SEMI_BOLD, 50));
+        addEntity(ScoreText);
         Coordinate2D location = new Coordinate2D(0,0);
         sceneChangeButton button1 = new sceneChangeButton(new Coordinate2D(getWidth() / 2 , getHeight() / 2),0, "Herstart spel", rabbitsurvival);
         addEntity(button1);
@@ -43,7 +52,9 @@ public class EindScherm extends StaticScene{
     public void method(Coordinate2D initialLocation,String text){
         System.out.println(text);
     }
-
+    public void setScore(int score){
+        this.score = score;
+    }
 
 }
     

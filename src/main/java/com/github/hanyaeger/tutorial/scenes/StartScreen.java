@@ -36,7 +36,6 @@ public class StartScreen extends StaticScene {
         rabbitsurvivalText.setFill(Color.DARKSEAGREEN);
         rabbitsurvivalText.setFont(Font.font("Roboto", FontWeight.SEMI_BOLD, 50));
         addEntity(rabbitsurvivalText);
-        Coordinate2D location = new Coordinate2D(0,0);
         sceneChangeButton button2 = new sceneChangeButton(new Coordinate2D(getWidth() / 2 , getHeight() / 2),1, "Start game", rabbitsurvival);
         addEntity(button2);
     }

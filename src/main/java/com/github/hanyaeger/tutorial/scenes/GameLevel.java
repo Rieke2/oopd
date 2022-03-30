@@ -6,6 +6,7 @@ import java.util.Random;
 import com.github.hanyaeger.api.AnchorPoint;
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.EntitySpawnerContainer;
+import com.github.hanyaeger.api.UpdateExposer;
 import com.github.hanyaeger.api.entities.impl.TextEntity;
 import com.github.hanyaeger.api.scenes.DynamicScene;
 import com.github.hanyaeger.tutorial.RabbitSurvival;
@@ -23,7 +24,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-public class GameLevel extends DynamicScene implements EntitySpawnerContainer{
+public class GameLevel extends DynamicScene implements EntitySpawnerContainer,UpdateExposer{
     int aantalStruiken = 3;
     int aantalSla = 3;
     int aantalHolen = 2;
@@ -34,6 +35,8 @@ public class GameLevel extends DynamicScene implements EntitySpawnerContainer{
     Vijand rSlang;
     Rabbit player;
     ArrayList<Hol> holen = new ArrayList<Hol>();
+    String score = "";
+    TextEntity rabbitsurvivalText;
 
     public GameLevel(RabbitSurvival rabbitSurvival) {
         this.rabbitSurvival = rabbitSurvival;
@@ -82,13 +85,12 @@ public class GameLevel extends DynamicScene implements EntitySpawnerContainer{
             addEntity(gSlang);
         }
         
-        var rabbitsurvivalText = new TextEntity(
-                new Coordinate2D(getWidth() / 2, getHeight() / 4), "Rabbit Survival");
-                
-
-        rabbitsurvivalText.setAnchorPoint(AnchorPoint.CENTER_CENTER);
-        rabbitsurvivalText.setFill(Color.DARKSEAGREEN);
-        rabbitsurvivalText.setFont(Font.font("Roboto", FontWeight.SEMI_BOLD, 50));
+        rabbitsurvivalText = new TextEntity(
+            new Coordinate2D(getWidth() - (getWidth() / 8), 0 + (getWidth() / 8)));
+    rabbitsurvivalText.setAnchorPoint(AnchorPoint.CENTER_CENTER);
+    rabbitsurvivalText.setFill(Color.DARKSEAGREEN);
+    rabbitsurvivalText.setFont(Font.font("Roboto", FontWeight.SEMI_BOLD, 50));
+    addEntity(rabbitsurvivalText);
     }
 
     @Override
@@ -99,6 +101,23 @@ public class GameLevel extends DynamicScene implements EntitySpawnerContainer{
     private Coordinate2D getRandomLocation(){
         Random random = new Random();
         return new Coordinate2D(random.nextInt((int)getWidth()),random.nextInt((int)getHeight()));
+    }
+
+    private void updateScore(){
+        if (player.getScore() < 10) {
+            score ="00" + Integer.toString(player.getScore());
+        } else if (player.getScore() < 100) {
+            score = "0" + Integer.toString(player.getScore());
+        } else {
+            score = Integer.toString(player.getScore());
+        }
+        rabbitsurvivalText.setText(score);
+    }
+
+    @Override
+    public void explicitUpdate(long timestamp) {
+        updateScore();
+        rabbitSurvival.setScore(player.getScore());
     }
     
 }
